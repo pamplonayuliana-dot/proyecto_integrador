@@ -4,103 +4,122 @@
     box-sizing: border-box;
 }
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Montserrat", sans-serif;
     background-color: #f4f7f5;
     color: #333;
 }
 header {
     background-color: #c0e3c6;
+    padding: 15px 25px; 
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
-    padding: 15px 25px;
-    gap: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);   
 }
 .header-contenedor {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* SEPARA título y menú */
-    padding: 0 40px;
+    justify-content: space-between;
+    gap: 40px;
 }
-
-.menu .lista {
-    display: flex;
-    gap: 30px; /* separa los items entre sí */
-    list-style: none;
+.logo {
+    width: 80px;
+    border-radius: 50%;
 }
-
-.menu .link {
-    text-decoration: none;
-    color: #2d6a4f;
-    font-weight: 500;
-}
-      
-
 .logo img {
     width: 100px;
     height: auto;
     border-radius: 50%;
 }
-.tituloPrincipal {
-    font-family: "Montserrat", sans-serif;
-    font-size: 20px;
-    color: rgb(69, 113, 78);
-    font-weight: 700;
-}
-.lista {
-    list-style: none;
+.logo-container {
     display: flex;
-    gap: 20px;
+    align-items: center;
+    gap: 15px;
 }
-.link{
+.tituloPrincipal {
+    font-size: 25px;
+    color: rgb(22, 23, 22);
+    font-weight: 300;
+    text-align: center;
+    flex-grow: 12;
+}
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+   }
+.menu .lista {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+}
+.lista a {
     text-decoration: none;
-    color:rgb(71,165,101);
-    font-size: 20px;
+    font-size: 15px;
+    color: #1d5c3a;
+    font-weight: 400;
+    padding: 5px 10px;
+    border-radius: 8px;
+    transition: 0.3s ease;
 }
-.linkInicio{
+.lista a:hover {
+    background-color: #b4ddc1;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+}
+.login-btn {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 12px;
+    background-color: #787978;
+    color: white;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s ease;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+}
+.login-btn img {
+    width: 28px;
+    height: 28px;
+}
+.login-btn:hover {
+    background-color: #56ad76;
+    transform: scale(1.05);
+}
+.linkInicio {
     font-weight: 700;
 }
 .banner {
-    background-image: url(../images/Banner_2.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: calc(100vh - 150px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding-left: 40px;
-}
-.banner-texto {
-    max-width: 500px;
-}
-.titulo {
-    font-family: "Montserrat", sans-serif;
-    color:rgb(69, 113, 78);
-    font-size: 36px;
-    text-shadow: 5px 5px 10px black;   
-}
-.adicionales {
-    font-family: "Montserrat", sans-serif;
-    color:rgb(17, 57, 25);
-    font-size: 20px;
-    text-shadow: 5px 5px 10px black;
-    margin-top: 10px;
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    object-position: center;
 }
 .presentacion {
+    font-family: "Montserrat", sans-serif;
     max-width: 900px;
     margin: 40px auto;
     padding: 0 20px;
-    text-align: center;
+   justify-content: right;
+    text-align: justify;
 }
+.titulo {
+    font-family: "Montserrat", sans-serif;
+    color: rgb(158, 123, 85);
+    font-size: 25px;
+    text-shadow: 1px 1px 1px black;
+    }
 .presentacion h3 {
-    font-size: 28px;
-    color: #ff7f27;
-    margin-bottom: 10px;
+    font-family: "Montserrat", sans-serif;
+    color: rgb(158, 123, 85);
+    font-size: 25px;
 }
 .presentacion p {
-    font-size: 18px;
-    margin-top: 10px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    margin-top: 25px;
+    margin-top: 20px;
 }
 .servicios {
     padding: 20px;
@@ -140,6 +159,100 @@ header {
     color: #ff7f27;
     margin-bottom: 10px;
 }
+.form-contacto {
+    max-width: 500px;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.form-contacto input,
+.form-contacto textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #c0e3c6;
+    border-radius: 8px;
+    font-size: 16px;
+    resize: none;
+}
+.form-contacto textarea {
+    height: 130px;
+}
+.form-contacto button {
+    width: 200px;
+    margin: 0 auto;
+}
+.equipo-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 100px; 
+    padding: 30px;
+    flex-wrap: wrap;   
+}
+.card {
+    text-align: center;
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    width: 260px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    min-height: 300px;
+    flex-direction: column;
+    align-items: center;
+}
+.card img {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 12px;
+}
+.equipo-contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 50px;
+    max-width: 1200px;
+    margin: auto;
+}
+.equipo-info {
+    text-align: center;
+    max-width: 300px;
+}
+.equipo-info img {
+    width: 180px;
+    height: auto;
+}
+.equipo-titulo {
+    font-size: 30px;
+    font-weight: bold;
+    color: #2c5c2c;
+    text-shadow: 1px 1px 2px #4f7f4f;
+}
+.integrantes-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.tarjeta {
+    background: white;
+    width: 260px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.tarjeta-titulo {
+    font-weight: bold;
+    font-size: 18px;
+    color: #2c5c2c;
+}
+.tarjeta-sub {
+    margin-top: 5px;
+    font-size: 14px;
+}
 footer {
     background-color: #c0e3c6;
     padding: 30px 20px;
@@ -149,6 +262,7 @@ footer .info {
     margin-bottom: 15px;
 }
 footer .info p {
+    font-family: ;
     font-size: 17px;
     font-weight: 500;
     color: #23623b;
@@ -178,135 +292,8 @@ footer .copyright {
         flex-direction: column;
         gap: 15px;
     }
-
     .lista {
         flex-direction: column;
         gap: 10px;
     }
 }
-.form-contacto {
-    max-width: 500px;
-    margin: 30px auto;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.form-contacto input,
-.form-contacto textarea {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #c0e3c6;
-    border-radius: 8px;
-    font-size: 16px;
-    resize: none;
-}
-
-.form-contacto textarea {
-    height: 130px;
-}
-
-.form-contacto button {
-    width: 200px;
-    margin: 0 auto;
-}
-
-/* Integrantes */
-/* Sección de equipo */
-.equipo-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 100px;             /* separación visual */
-    padding: 30px;
-    flex-wrap: wrap;   
-}
-
-.card {
-    text-align: center;
-    background: white;
-    border-radius: 12px;
-    padding: 15px;
-    width: 260px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    min-height: 300px;      /* asegura altura uniforme */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.card img {
-    width: 220px;           /* mismo ancho para todas */
-    height: px;          /* misma altura para todas */
-    object-fit: cover;      /* recorte proporcional */
-    border-radius: 50%;     /* círculo */
-    margin-bottom: 12px;
-}
-
-/*Loguin/*
-
-/* Fondo general */
-body {
-    margin: 0;
-    padding: 0;
-    background-color: #c6e3c6;
-    font-family: 'Lato', sans-serif;
-}
-
-/* CONTENEDOR PRINCIPAL */
-.equipo-contenedor {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 40px;
-    padding: 50px;
-    max-width: 1200px;
-    margin: auto;
-}
-
-/* COLUMNA IZQUIERDA (logo + título) */
-.equipo-info {
-    text-align: center;
-    max-width: 300px;
-}
-
-.equipo-info img {
-    width: 180px;
-    height: auto;
-}
-
-.equipo-titulo {
-    font-size: 30px;
-    font-weight: bold;
-    color: #2c5c2c;
-    text-shadow: 1px 1px 2px #4f7f4f;
-}
-
-/* COLUMNA DERECHA (tarjetas de integrantes) */
-.integrantes-lista {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-/* TARJETAS */
-.tarjeta {
-    background: white;
-    width: 260px;
-    padding: 20px;
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.tarjeta-titulo {
-    font-weight: bold;
-    font-size: 18px;
-    color: #2c5c2c;
-}
-
-.tarjeta-sub {
-    margin-top: 5px;
-    font-size: 14px;
-}
- 
