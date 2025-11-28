@@ -32,8 +32,338 @@
             </a>
         </div>
     </header>
-    <body>
-        <!-- FOOTER -->
+    <main class="container py-5">
+
+        <h2 class="TituloModelo text-center mb-3">Ejercicio Lógica de Programación</h2>
+        <hr class="my-4">
+           <pre class="bg-dark text-light p-4 rounded shadow">
+    <code>
+        import java.util.Scanner;
+
+        public class Proyecto {
+
+            public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        String adminUser = "admin";
+        String adminPass = "1234";
+
+        // Cuenta única de cliente
+        String clienteUsuario = "";
+        String clientePass = "";
+        boolean clienteCreado = false;
+
+        // Arreglos servicios
+        String[] servNombre = new String[100];
+        String[] servDescripcion = new String[100];
+        double[] servPrecio = new double[100];
+        int totalServicios = 0;
+
+        // Arreglos compras
+        String[] compUsuario = new String[200];
+        String[] compServicio = new String[200];
+        int[] compCantidad = new int[200];
+        double[] compTotal = new double[200];
+        int totalCompras = 0;
+
+        int opcionPrincipal = 0;
+
+        System.out.println("Bienvenido al sistema La Patita Feliz");
+
+        do {
+            System.out.println("""
+                    Menú Principal
+                    Por favor selecciona una opcion
+                    
+                    1) Admin
+                    2) Cliente
+                    3) Salir
+                    """);
+            opcionPrincipal = Integer.parseInt(sc.nextLine());
+
+            switch (opcionPrincipal) {
+
+                // ==========================
+                // ADMIN
+                // ==========================
+                case 1:
+
+                    System.out.println("LOGIN ADMIN");
+                    System.out.print("Usuario: ");
+                    String uAdmin = sc.nextLine();
+                    System.out.print("Contraseña: ");
+                    String pAdmin = sc.nextLine();
+
+                    if (!uAdmin.equals(adminUser) || !pAdmin.equals(adminPass)) {
+                        System.out.println("Acceso denegado.");
+                        break;
+                    }
+
+                    int opcionAdmin = 0;
+
+                    do {
+                        System.out.println("""
+                                ==== ADMIN ====
+                                1) Crear servicio
+                                2) Listar servicios
+                                3) Buscar servicio
+                                4) Actualizar servicio
+                                5) Eliminar servicio
+                                6) Volver
+                                """);
+
+                        opcionAdmin = Integer.parseInt(sc.nextLine());
+
+                        switch (opcionAdmin) {
+
+                            case 1:
+                                if (totalServicios < 5) {
+                                    System.out.print("Nombre servicio: ");
+                                    servNombre[totalServicios] = sc.nextLine();
+                                    System.out.print("Descripción: ");
+                                    servDescripcion[totalServicios] = sc.nextLine();
+                                    System.out.print("Precio: ");
+                                    servPrecio[totalServicios] = Double.parseDouble(sc.nextLine());
+                                    totalServicios++;
+                                    System.out.println("Servicio creado.");
+                                }
+                                break;
+
+                            case 2:
+                                if (totalServicios == 0) {
+                                    System.out.println("No hay servicios.");
+                                } else {
+                                    for (int i = 0; i < totalServicios; i++) {
+                                        System.out.println((i + 1) + ") "
+                                                + servNombre[i] + " - "
+                                                + servDescripcion[i] + " - Precio: " + servPrecio[i]);
+                                    }
+                                }
+                                break;
+
+                            case 3:
+                                System.out.print("Nombre del servicio: ");
+                                String buscar = sc.nextLine();
+                                int pos = -1;
+
+                                for (int i = 0; i < totalServicios; i++) {
+                                    if (servNombre[i].equalsIgnoreCase(buscar)) {
+                                        pos = i;
+                                        break;
+                                    }
+                                }
+
+                                if (pos == -1) {
+                                    System.out.println("No encontrado.");
+                                } else {
+                                    System.out.println(servNombre[pos] + " - "
+                                            + servDescripcion[pos] + " - Precio: " + servPrecio[pos]);
+                                }
+                                break;
+
+                            case 4:
+                                System.out.print("Servicio a actualizar: ");
+                                String actualizar = sc.nextLine();
+                                int posAct = -1;
+
+                                for (int i = 0; i < totalServicios; i++) {
+                                    if (servNombre[i].equalsIgnoreCase(actualizar)) {
+                                        posAct = i;
+                                        break;
+                                    }
+                                }
+
+                                if (posAct == -1) {
+                                    System.out.println("No encontrado.");
+                                } else {
+                                    System.out.print("Nuevo nombre (" + servNombre[posAct] + "): ");
+                                    String n1 = sc.nextLine();
+                                    if (!n1.isBlank()) servNombre[posAct] = n1;
+
+                                    System.out.print("Nueva descripción (" + servDescripcion[posAct] + "): ");
+                                    String n2 = sc.nextLine();
+                                    if (!n2.isBlank()) servDescripcion[posAct] = n2;
+
+                                    System.out.print("Nuevo precio (" + servPrecio[posAct] + "): ");
+                                    String n3 = sc.nextLine();
+                                    if (!n3.isBlank()) servPrecio[posAct] = Double.parseDouble(n3);
+
+                                    System.out.println("Servicio actualizado.");
+                                }
+                                break;
+
+                            case 5:
+                                System.out.print("Servicio a eliminar: ");
+                                String eliminar = sc.nextLine();
+                                int posDel = -1;
+
+                                for (int i = 0; i < totalServicios; i++) {
+                                    if (servNombre[i].equalsIgnoreCase(eliminar)) {
+                                        posDel = i;
+                                        break;
+                                    }
+                                }
+
+                                if (posDel == -1) {
+                                    System.out.println("No encontrado.");
+                                } else {
+                                    for (int i = posDel; i < totalServicios - 1; i++) {
+                                        servNombre[i] = servNombre[i + 1];
+                                        servDescripcion[i] = servDescripcion[i + 1];
+                                        servPrecio[i] = servPrecio[i + 1];
+                                    }
+                                    totalServicios--;
+                                    System.out.println("Servicio eliminado.");
+                                }
+                                break;
+                        }
+
+                    } while (opcionAdmin != 6);
+
+                    break;
+
+                // ==========================
+                // CLIENTE
+                // ==========================
+                case 2:
+
+                    int opcionLogin = 0;
+
+                    do {
+                        System.out.println("""
+                                ==== CLIENTE ====
+                                
+                                1) Crear cuenta
+                                2) Iniciar sesión
+                                3) Volver
+                                """);
+
+                        opcionLogin = Integer.parseInt(sc.nextLine());
+
+                        switch (opcionLogin) {
+
+                            // Crear cuenta única
+                            case 1:
+                                System.out.print("Cree su usuario: ");
+                                clienteUsuario = sc.nextLine();
+                                System.out.print("Cree su contraseña: ");
+                                clientePass = sc.nextLine();
+                                clienteCreado = true;
+                                System.out.println("Cuenta creada.");
+                                break;
+
+                            // Login cliente
+                            case 2:
+                                if (!clienteCreado) {
+                                    System.out.println("Debe crear cuenta primero.");
+                                    break;
+                                }
+
+                                System.out.print("Usuario: ");
+                                String uc = sc.nextLine();
+                                System.out.print("Contraseña: ");
+                                String pc = sc.nextLine();
+
+                                if (!uc.equals(clienteUsuario) || !pc.equals(clientePass)) {
+                                    System.out.println("Credenciales incorrectas.");
+                                } else {
+
+                                    int opcionCliente = 0;
+
+                                    do {
+                                        System.out.println("""
+                                                ==== MENU CLIENTE ====
+                                                1) Ver servicios
+                                                2) Comprar servicio
+                                                3) Ver mis compras
+                                                4) Volver
+                                                """);
+
+                                        opcionCliente = Integer.parseInt(sc.nextLine());
+
+                                        switch (opcionCliente) {
+
+                                            case 1:
+                                                if (totalServicios == 0) {
+                                                    System.out.println("No hay servicios.");
+                                                } else {
+                                                    for (int i = 0; i < totalServicios; i++) {
+                                                        System.out.println((i + 1) + ") "
+                                                                + servNombre[i] + " - "
+                                                                + servDescripcion[i] + " - Precio: " + servPrecio[i]);
+                                                    }
+                                                }
+                                                break;
+
+                                            case 2:
+                                                if (totalServicios == 0) {
+                                                    System.out.println("No hay servicios para comprar.");
+                                                    break;
+                                                }
+
+                                                for (int i = 0; i < totalServicios; i++) {
+                                                    System.out.println((i + 1) + ") " + servNombre[i] + " - " + servPrecio[i]);
+                                                }
+
+                                                System.out.print("Seleccione servicio: ");
+                                                int servSel = Integer.parseInt(sc.nextLine()) - 1;
+
+                                                if (servSel < 0 || servSel >= totalServicios) {
+                                                    System.out.println("Opción inválida.");
+                                                    break;
+                                                }
+
+                                                System.out.print("Cantidad: ");
+                                                int cant = Integer.parseInt(sc.nextLine());
+                                                double total = servPrecio[servSel] * cant;
+
+                                                compUsuario[totalCompras] = clienteUsuario;
+                                                compServicio[totalCompras] = servNombre[servSel];
+                                                compCantidad[totalCompras] = cant;
+                                                compTotal[totalCompras] = total;
+                                                totalCompras++;
+
+                                                System.out.println("Compra realizada. Total: " + total);
+                                                break;
+
+                                            case 3:
+                                                boolean tieneCompras = false;
+
+                                                for (int i = 0; i < totalCompras; i++) {
+                                                    if (compUsuario[i] != null &&
+                                                            compUsuario[i].equals(clienteUsuario)) {
+                                                        System.out.println("Servicio: " + compServicio[i]
+                                                                + " | Cantidad: " + compCantidad[i]
+                                                                + " | Total: " + compTotal[i]);
+                                                        tieneCompras = true;
+                                                    }
+                                                }
+
+                                                if (!tieneCompras) {
+                                                    System.out.println("No tienes compras.");
+                                                }
+                                                break;
+                                        }
+
+                                    } while (opcionCliente != 4);
+                                }
+                                break;
+                        }
+
+                    } while (opcionLogin != 3);
+
+                    break;
+            }
+
+        } while (opcionPrincipal != 3);
+
+        System.out.println("Saliendo del sistema.");
+    }
+}
+</code>
+</pre>
+</main>
     <footer>
         <div class="info">
             <p>
@@ -47,5 +377,5 @@
         </div>
         <p class="copyright">© 2025 La Patita Feliz. Todos los derechos reservados.</p>
     </footer>
-    </body>
-    </html>
+</body>
+</html>

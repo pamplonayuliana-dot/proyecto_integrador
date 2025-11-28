@@ -22,6 +22,7 @@ header {
     justify-content: space-between;
     gap: 40px;
 }
+/*Inicio*/
 .logo {
     width: 80px;
     border-radius: 50%;
@@ -97,12 +98,12 @@ header {
     object-position: center;
 }
 .presentacion {
-    font-family: "Montserrat", sans-serif;
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 0 20px;
-   justify-content: right;
-    text-align: justify;
+  font-family: "Montserrat", sans-serif;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+  justify-content: right;
+  text-align: justify;
 }
 .titulo {
     font-family: "Montserrat", sans-serif;
@@ -121,6 +122,7 @@ header {
     margin-top: 25px;
     margin-top: 20px;
 }
+/*Servicios*/
 .servicios {
     padding: 20px;
     text-align: center;
@@ -159,6 +161,56 @@ header {
     color: #ff7f27;
     margin-bottom: 10px;
 }
+/* Modelo Entidad Relacion*/
+.modelodb {
+    background-color: black;
+    min-height: 100vh;
+    padding-bottom: 20px;
+}
+.TituloModelo {
+    font-family: "Montserrat", sans-serif;
+    color: rgb(158, 123, 85);
+    font-size: 25px;
+    text-shadow: 1px 1px 1px black;
+    text-align: center;
+    margin-top: 20px;
+}
+.reglas-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-left: 0;
+    margin: 0 auto;
+    max-width: 90%;
+}
+.reglas-lista {
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    margin-left: 20px;
+}
+.reglas-lista li h3 {
+    color: rgb(201, 162, 114);
+    margin-bottom: 8px;
+}
+.modeloER {
+    max-width: 95%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
+code, pre {
+    color: rgb(230, 230, 230);
+    background-color: #1a1a1a;
+    padding: 10px;
+    border-radius: 8px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    display: block;
+    margin: 20px auto;
+    max-width: 95%;
+    font-size: 14px;
+}
+/*Contactos*/
 .form-contacto {
     max-width: 500px;
     margin: 30px auto;
@@ -231,6 +283,7 @@ header {
     color: #2c5c2c;
     text-shadow: 1px 1px 2px #4f7f4f;
 }
+/*Integrantes*/
 .integrantes-lista {
     display: flex;
     flex-direction: column;
@@ -253,6 +306,112 @@ header {
     margin-top: 5px;
     font-size: 14px;
 }
+/*Formulario*/
+form {
+    max-width: 750px;
+    margin: auto;
+    background-color: #ffffff;
+    padding: 25px 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+}
+
+/* ------------------------------------
+   FIELDSETS
+------------------------------------ */
+fieldset {
+    border: 2px solid #ff7f27;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    background-color: #fffdf9;
+}
+
+legend {
+    font-weight: 700;
+    color: #ff7f27;
+    padding: 0 10px;
+    font-size: 18px;
+}
+
+/* ------------------------------------
+   LABELS + INPUTS
+------------------------------------ */
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    border: 1.8px solid #ccc;
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #ff7f27;
+    outline: none;
+}
+
+/* ------------------------------------
+   GRUPOS RADIO Y CHECKBOX
+------------------------------------ */
+.grupo-radio,
+.grupo-checkbox {
+    margin-top: 10px;
+}
+
+.grupo-radio input,
+.grupo-checkbox input {
+    width: auto;
+    margin-right: 6px;
+}
+.grupo-radio label,
+.grupo-checkbox label {
+    margin-right: 15px;
+    display: inline-block;
+    font-weight: 500;
+}
+.botones-form {
+    text-align: center;
+    margin-top: 20px;
+}
+input[type="submit"],
+input[type="reset"] {
+    width: 48%;
+    padding: 12px 0;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s ease;
+    color: white;
+}
+input[type="submit"] {
+    background-color: #ff7f27;
+}
+input[type="submit"]:hover {
+    background-color: #e56f1f;
+}
+
+input[type="reset"] {
+    background-color: #555;
+}
+input[type="reset"]:hover {
+    background-color: #333;
+}
+/*Footer*/
 footer {
     background-color: #c0e3c6;
     padding: 30px 20px;
@@ -287,13 +446,41 @@ footer .copyright {
     color: #23623b;
     margin-top: 10px;    
 }
+
 @media (max-width: 768px) {
+
     header {
         flex-direction: column;
         gap: 15px;
     }
+
+    .header-contenedor {
+        flex-direction: column;
+    }
+
     .lista {
         flex-direction: column;
-        gap: 10px;
+        text-align: center;
+    }
+
+    .banner {
+        height: 300px;
+    }
+}
+
+/* CELULAR PEQUEÑO */
+@media (max-width: 480px) {
+
+    .tituloPrincipal {
+        font-size: 20px;
+    }
+
+    .logo img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .servicio-item {
+        max-width: 100%;
     }
 }

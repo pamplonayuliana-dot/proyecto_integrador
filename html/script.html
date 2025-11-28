@@ -32,8 +32,269 @@
             </a>
         </div>
     </header>
-    <body>
-        <!-- FOOTER -->
+   <!-- Modelo Entidad-Relación -->
+    <hr>
+    <h1 class="TituloModelo">Reglas del Negocio</h1>
+    <section class="reglas-container">
+            <ol class="reglas-lista">
+            <!-- 1. Clientes y mascotas -->
+            <li>
+                <h3>Clientes y mascotas</h3>
+                <ul>
+                    <li>Cada mascota pertenece a un único cliente.</li>
+                    <li>Una mascota no existe si no está asociada a un cliente (Mascotas.ClienteID es obligatorio).</li>
+                    <li>Un cliente puede tener cero, una o varias mascotas.</li>
+                    <li>Los datos básicos del cliente son obligatorios para operar el spa.</li>
+                    <li>Se debe registrar como mínimo: Nombre, Teléfono, Correo y Dirección.</li>
+                    <li>Los datos básicos de la mascota deben estar registrados para prestar servicios.</li>
+                    <li>Nombre, Especie, Raza, Edad y Peso son atributos necesarios para evaluar qué servicios puede recibir la mascota.</li>
+                </ul>
+            </li>
+
+            <!-- 2. Empleados y atención de citas -->
+            <li>
+                <h3>Empleados y atención de citas</h3>
+                <ul>
+                    <li>Toda cita debe ser atendida por exactamente un empleado.</li>
+                    <li>Citas.EmpleadoID es obligatorio.</li>
+                    <li>Un empleado puede atender muchas citas a lo largo del tiempo.</li>
+                    <li>Una cita siempre se programa para una sola mascota.</li>
+                    <li>Citas.MascotaID es obligatorio.</li>
+                    <li>Una misma mascota puede tener múltiples citas en fechas y horas diferentes.</li>
+                </ul>
+            </li>
+
+            <!-- 3. Citas y servicios (Detalle de la cita) -->
+            <li>
+                <h3>Citas y servicios (Detalle de la cita)</h3>
+                <ul>
+                    <li>No puede existir un detalle de cita sin una cita asociada.</li>
+                    <li>DetalleCita.CitaID es obligatorio: primero se crea la cita, luego sus servicios.</li>
+                    <li>Cada detalle de cita corresponde exactamente a un servicio registrado.</li>
+                    <li>DetalleCita.ServicioID referencia a un registro en Servicios.</li>
+                    <li>Un mismo servicio puede aparecer en muchos detalles de cita.</li>
+                    <li>Una cita está compuesta por uno o varios servicios.</li>
+                    <li>Operativamente, una cita sin registros en DetalleCita no tiene sentido.</li>
+                    <li>El precio aplicado al servicio en la cita puede diferir del precio estándar.</li>
+                    <li>DetalleCita.PrecioAplicado almacena el valor cobrado al cliente en esa cita, permitiendo descuentos, promociones o ajustes respecto a Servicios.Precio.</li>
+                    <li>Las observaciones de la cita son opcionales, pero se asocian a toda la cita, no a un servicio específico.</li>
+                    <li>Comentarios de comportamiento, instrucciones del cliente, advertencias, etc., se registran en Citas.Observaciones.</li>
+                </ul>
+            </li>
+
+            <!-- 4. Catálogo de servicios -->
+            <li>
+                <h3>Catálogo de servicios</h3>
+                <ul>
+                    <li>Todo servicio ofrecido por el spa está previamente definido en el catálogo de Servicios.</li>
+                    <li>Cada servicio tiene: NombreServicio, Descripción, DuraciónMinutos y un Precio estándar.</li>
+                    <li>El tiempo estimado de un servicio se maneja a nivel de catálogo.</li>
+                    <li>DuraciónMinutos se usa para planificar la agenda y calcular ocupación de los empleados.</li>
+                    <li>Solo se pueden agendar servicios que existan en el catálogo.</li>
+                    <li>DetalleCita.ServicioID debe corresponder a un Servicios.ServicioID válido.</li>
+                </ul>
+            </li>
+
+            <!-- 5. Productos -->
+            <li>
+                <h3>Productos</h3>
+                <ul>
+                    <li>Los productos del spa se gestionan en un catálogo independiente.</li>
+                    <li>Cada producto tiene: Nombre, Categoría, Precio y Stock.</li>
+                    <li>El stock de los productos se controla a nivel de inventario, no de cita.</li>
+                    <li>En el modelo actual no hay relación directa entre Productos y Citas/DetalleCita, por lo tanto, la venta/uso de productos no queda asociada a una cita específica.</li>
+                </ul>
+            </li>
+        </ol>
+    </section>
+<hr>
+<!-- Script Base De Datos -->
+            <h3 class="TituloModelo mb-4">Diagrama Modelo Entidad Relación(SQL)</h3>
+<pre class="bg-dark-code p-4 border rounded shadow-sm">  
+    <img class="modeloER" src="../images/Modelo_Entidad_Relacion.png" alt="script">   
+<hr>   
+<h3 class="TituloModelo mb-4">Script de la Base De Datos (SQL)</h3>        
+    <code> 
+        CREATE DATABASE MascotasSpa;
+        USE MascotasSpa;
+
+        CREATE TABLE Clientes (
+        ClienteID INT PRIMARY KEY,
+        Nombre VARCHAR(100) NOT NULL,
+        Telefono VARCHAR(20),
+        Correo VARCHAR(100),
+        Direccion VARCHAR(150)
+        );
+
+        CREATE TABLE Mascotas (
+        MascotaID INT PRIMARY KEY, 
+        ClienteID INT NOT NULL,
+        Nombre VARCHAR(100) NOT NULL,
+        Especie VARCHAR(50),
+        Raza VARCHAR(100),
+        Edad INT,
+        Peso DECIMAL(5,2),
+        );
+
+        CREATE TABLE Empleados (
+        EmpleadoID INT PRIMARY KEY,
+        Nombre VARCHAR(100) NOT NULL,
+        Cargo VARCHAR(50),
+        Telefono VARCHAR(20)
+        );
+
+        CREATE TABLE Citas (
+        CitaID INT PRIMARY KEY, 
+        MascotaID INT NOT NULL,
+        EmpleadoID INT NOT NULL,
+        Fecha DATE NOT NULL,
+        Hora TIME NOT NULL,
+        Observaciones VARCHAR(255),
+        );
+
+        CREATE TABLE DetalleCita (
+        DetalleID INT PRIMARY KEY,
+        CitaID INT NOT NULL,
+        ServicioID INT NOT NULL,
+        PrecioAplicado DECIMAL(10,2),
+        );
+
+        CREATE TABLE Productos (
+        ProductoID INT PRIMARY KEY,
+        Nombre VARCHAR(150) NOT NULL,
+        Categoria VARCHAR(100),
+        Precio DECIMAL(10,2) NOT NULL,
+        Stock INT DEFAULT 0
+        );
+
+        INSERT INTO Clientes VALUES
+        (1,'Ana Gómez','3001234561','ana@gmail.com','Calle 10 #20'),
+        (2,'Carlos Pérez','3109876501','carlos@gmail.com','Av Central 45'),
+        (3,'Laura Ruiz','3125558899','laura@gmail.com','Cra 80 #25-10'),
+        (4,'Mario López','3004448899','mario@gmail.com','Calle 50 #12'),
+        (5,'Daniela Torres','3149988776','daniela@gmail.com','Av Las Palmas 22'),
+        (6,'Sofía Mendoza','3001122334','sofia@gmail.com','Calle 12 #40'),
+        (7,'Andrés Giraldo','3112233445','andres@gmail.com','Calle 34 #10'),
+        (8,'Paula Nieto','3126677889','paula@gmail.com','Cra 5 #33'),
+        (9,'Juan Díaz','3105566778','juan@gmail.com','B/H Granada 8'),
+        (10,'Camila Rojas','3201133557','camila@gmail.com','Calle 8 #21'),
+        (11,'Jennifer Ortiz','3119899876','jennifer@gmail.com','Av Siempre Viva 123'),
+        (12,'Esteban Silva','3008877665','esteban@gmail.com','Cra 20 #4'),
+        (13,'Ricardo Mora','3135566441','ricardo@gmail.com','Calle 60 #45'),
+        (14,'Valeria Castro','3158877996','valeria@gmail.com','Cra 88 #12'),
+        (15,'Luis Herrera','3101199887','luis@gmail.com','Calle 70 #11');
+
+        INSERT INTO Mascotas VALUES
+        (1,1,'Firulais','Perro','Labrador',4,25.5),
+        (2,1,'Misu','Gato','Siamés',2,4.3),
+        (3,2,'Rex','Perro','Poodle',3,8.1),
+        (4,3,'Bruno','Perro','Bulldog',5,18.0),
+        (5,4,'Luna','Perro','Golden',1,10.0),
+        (6,5,'Tom','Gato','Persa',2,5.1),
+        (7,6,'Max','Perro','Beagle',3,12.2),
+        (8,7,'Rocky','Perro','Boxer',6,27.0),
+        (9,8,'Nala','Gato','Criollo',1,3.5),
+        (10,9,'Toby','Perro','Chihuahua',4,2.2),
+        (11,10,'Kiara','Gato','Angora',3,4.6),
+        (12,11,'Doki','Perro','Schnauzer',5,7.8),
+        (13,12,'Simba','Gato','Siberiano',1,4.0),
+        (14,13,'Coco','Perro','French Poodle',2,6.0),
+        (15,14,'Milo','Gato','British Shorthair',3,5.5);
+
+        INSERT INTO Empleados VALUES
+        (1,'Luisa Martínez','Peluquera','3015550001'),
+        (2,'Javier Ruiz','Asistente','3021110002'),
+        (3,'Marta Delgado','Veterinaria','3009990003'),
+        (4,'José Torres','Peluquero','3208870004'),
+        (5,'Claudia Reyes','Recepción','3112330005'),
+        (6,'Santiago Mejía','Veterinario','3105540006'),
+        (7,'Paola Rincón','Peluquera','3001120007'),
+        (8,'Carolina Acevedo','Auxiliar','3206670008'),
+        (9,'Felipe Duarte','Peluquero','3157780009'),
+        (10,'Melissa Arango','Asistente','3009900010'),
+        (11,'Daniel Bueno','Veterinario','3006600011'),
+        (12,'Valentina León','Recepción','3128890012'),
+        (13,'Camilo Posada','Auxiliar','3187790013'),
+        (14,'Lorena Arias','Peluquera','3004470014'),
+        (15,'Nicolás Rivera','Asistente','3105580015');
+
+        INSERT INTO Productos VALUES
+        (1,'Shampoo Aloe','Aseo',18000,20),
+        (2,'Collar Rojo','Accesorios',12000,15),
+        (3,'Pelota Perro','Juguetes',9000,30),
+        (4,'Galletas DogChow','Alimento',7000,40),
+        (5,'Arena para gatos','Aseo',15000,25),
+        (6,'Correa azul','Accesorios',22000,12),
+        (7,'Plato metálico','Hogar',11000,18),
+        (8,'Cepillo doble','Aseo',13000,14),
+        (9,'Snack pollo','Alimento',8000,35),
+        (10,'Cama pequeña','Hogar',45000,6),
+        (11,'Juguete ratón','Juguetes',5000,28),
+        (12,'Shampoo medicado','Aseo',25000,10),
+        (13,'Kit uñas','Accesorios',9000,20),
+        (14,'Collar con placa','Accesorios',18000,12),
+        (15,'Kit limpieza oídos','Aseo',16000,9);
+
+        INSERT INTO Citas VALUES
+        (1,1,1,'2025-12-01','09:00:00','Baño especial'),
+        (2,2,2,'2025-12-01','10:00:00','Corte de uñas'),
+        (3,3,3,'2025-12-02','14:00:00','Limpieza oídos'),
+        (4,4,4,'2025-12-02','15:00:00','Baño básico'),
+        (5,5,5,'2025-12-03','11:00:00','Corte completo'),
+        (6,6,6,'2025-12-03','13:00:00','Baño'),
+        (7,7,7,'2025-12-04','09:00:00','Corte uñas'),
+        (8,8,8,'2025-12-04','10:30:00','Baño y secado'),
+        (9,9,9,'2025-12-05','08:00:00','Control veterinario'),
+        (10,10,10,'2025-12-05','09:30:00','Baño'),
+        (11,11,11,'2025-12-06','11:00:00','Corte básico'),
+        (12,12,12,'2025-12-06','14:00:00','Baño'),
+        (13,13,13,'2025-12-07','15:00:00','Baño completo'),
+        (14,14,14,'2025-12-07','16:00:00','Cepillado'),
+        (15,15,15,'2025-12-08','10:00:00','Baño detallado');
+
+        INSERT INTO DetalleCita VALUES
+        (1,1,1,25000),
+        (2,2,2,8000),
+        (3,3,3,6000),
+        (4,4,1,25000),
+        (5,5,2,8000),
+        (6,6,1,25000),
+        (7,7,3,6000),
+        (8,8,1,25000),
+        (9,9,3,6000),
+        (10,10,2,8000),
+        (11,11,1,25000),
+        (12,12,3,6000),
+        (13,13,2,8000),
+        (14,14,1,25000),
+        (15,15,1,25000);
+
+        USE MascotasSpa;
+        GO
+
+        SELECT c.Nombre, COUNT(m.MascotaID) AS TotalMascotas
+        FROM Clientes c
+        JOIN Mascotas m ON c.ClienteID = m.ClienteID
+        GROUP BY c.Nombre;
+
+        SELECT CitaID, SUM(PrecioAplicado) AS TotalCita
+        FROM DetalleCita
+        GROUP BY CitaID;
+
+        SELECT AVG(Peso) AS PesoPromedio
+        FROM Mascotas;
+
+        SELECT c.CitaID, m.Nombre AS Mascota, e.Nombre AS Empleado, c.Fecha, c.Hora
+        FROM Citas c
+        JOIN Mascotas m ON c.MascotaID = m.MascotaID
+        JOIN Empleados e ON c.EmpleadoID = e.EmpleadoID;
+
+        SELECT Categoria, COUNT(*) AS TotalProductos
+        FROM Productos
+        GROUP BY Categoria;
+    </code>        
+    </pre>
+       <!-- FOOTER -->
     <footer>
         <div class="info">
             <p>
@@ -47,6 +308,5 @@
         </div>
         <p class="copyright">© 2025 La Patita Feliz. Todos los derechos reservados.</p>
     </footer>
-    </body>
 </body>
 </html>
