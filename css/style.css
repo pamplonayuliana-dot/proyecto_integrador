@@ -306,19 +306,20 @@ code, pre {
     margin-top: 5px;
     font-size: 14px;
 }
-/*Formulario*/
+/* ================== FORMULARIO ================== */
+
 form {
     max-width: 750px;
-    margin: auto;
+    margin: 40px auto;
     background-color: #ffffff;
     padding: 25px 30px;
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+    font-family: "Montserrat", sans-serif;
 }
 
-/* ------------------------------------
-   FIELDSETS
------------------------------------- */
+/* ---------- FIELDSETS ---------- */
+
 fieldset {
     border: 2px solid #ff7f27;
     padding: 20px;
@@ -334,9 +335,8 @@ legend {
     font-size: 18px;
 }
 
-/* ------------------------------------
-   LABELS + INPUTS
------------------------------------- */
+/* ---------- LABELS + INPUTS ---------- */
+
 label {
     display: block;
     margin-top: 15px;
@@ -363,29 +363,59 @@ textarea:focus {
     outline: none;
 }
 
-/* ------------------------------------
-   GRUPOS RADIO Y CHECKBOX
------------------------------------- */
+/* ---------- GRUPOS RADIO Y CHECKBOX ---------- */
+/* Contenedor general del grupo (ej: "Tipo de mascota", "Servicios adicionales") */
+
 .grupo-radio,
 .grupo-checkbox {
     margin-top: 10px;
 }
 
-.grupo-radio input,
-.grupo-checkbox input {
-    width: auto;
-    margin-right: 6px;
+/* Etiqueta/título del grupo (ej: "Tipo de mascota:") */
+.grupo-radio > .titulo-grupo,
+.grupo-checkbox > .titulo-grupo {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 6px;
+    font-weight: 600;
 }
-.grupo-radio label,
-.grupo-checkbox label {
-    margin-right: 15px;
-    display: inline-block;
+
+/* Lista de opciones dentro del grupo */
+.grupo-opciones {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Cada opción (input + texto) en una misma línea */
+.grupo-opcion {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-weight: 500;
 }
+
+/* Los radios/checkbox NO deben ocupar todo el ancho */
+.grupo-opcion input[type="radio"],
+.grupo-opcion input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+}
+
+/* El texto al lado del radio/checkbox */
+.grupo-opcion label {
+    margin: 0;
+    font-weight: 500;
+    display: inline-block;
+}
+
+/* ---------- BOTONES ---------- */
+
 .botones-form {
     text-align: center;
     margin-top: 20px;
 }
+
 input[type="submit"],
 input[type="reset"] {
     width: 48%;
@@ -398,9 +428,11 @@ input[type="reset"] {
     transition: 0.3s ease;
     color: white;
 }
+
 input[type="submit"] {
     background-color: #ff7f27;
 }
+
 input[type="submit"]:hover {
     background-color: #e56f1f;
 }
@@ -408,9 +440,11 @@ input[type="submit"]:hover {
 input[type="reset"] {
     background-color: #555;
 }
+
 input[type="reset"]:hover {
     background-color: #333;
 }
+
 /*Footer*/
 footer {
     background-color: #c0e3c6;
