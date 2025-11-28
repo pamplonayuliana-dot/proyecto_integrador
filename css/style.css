@@ -343,7 +343,8 @@ label {
     font-weight: 600;
 }
 
-input,
+/* inputs de texto, email, etc. ocupan 100% */
+input:not([type="radio"]):not([type="checkbox"]),
 select,
 textarea {
     width: 100%;
@@ -364,46 +365,37 @@ textarea:focus {
 }
 
 /* ---------- GRUPOS RADIO Y CHECKBOX ---------- */
-/* Contenedor general del grupo (ej: "Tipo de mascota", "Servicios adicionales") */
 
 .grupo-radio,
 .grupo-checkbox {
-    margin-top: 10px;
-}
-
-/* Etiqueta/título del grupo (ej: "Tipo de mascota:") */
-.grupo-radio > .titulo-grupo,
-.grupo-checkbox > .titulo-grupo {
-    display: block;
     margin-top: 15px;
-    margin-bottom: 6px;
-    font-weight: 600;
 }
 
-/* Lista de opciones dentro del grupo */
-.grupo-opciones {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+/* Etiqueta del título del grupo (ej: "Tipo de mascota:") */
+.grupo-radio > label,
+.grupo-checkbox > label {
+    margin-top: 0;
 }
 
-/* Cada opción (input + texto) en una misma línea */
-.grupo-opcion {
+/* Cada opción (texto + círculo/cuadro) en una línea */
+.grupo-radio .opcion,
+.grupo-checkbox .opcion {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-weight: 500;
+    margin-top: 8px;
 }
 
-/* Los radios/checkbox NO deben ocupar todo el ancho */
-.grupo-opcion input[type="radio"],
-.grupo-opcion input[type="checkbox"] {
+/* Radios y checkboxes con ancho automático y alineados a la izquierda */
+.grupo-radio .opcion input[type="radio"],
+.grupo-checkbox .opcion input[type="checkbox"] {
     width: auto;
     margin: 0;
 }
 
-/* El texto al lado del radio/checkbox */
-.grupo-opcion label {
+/* Texto al lado del radio/checkbox */
+.grupo-radio .opcion label,
+.grupo-checkbox .opcion label {
     margin: 0;
     font-weight: 500;
     display: inline-block;
