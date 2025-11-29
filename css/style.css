@@ -362,15 +362,10 @@ textarea:focus {
     border-color: #ff7f27;
     outline: none;
 }
-
-/* ------------------------------------
-   GRUPOS RADIO Y CHECKBOX
------------------------------------- */
 .grupo-radio,
 .grupo-checkbox {
     margin-top: 10px;
 }
-
 .grupo-radio input,
 .grupo-checkbox input {
     width: auto;
