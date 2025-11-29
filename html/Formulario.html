@@ -32,16 +32,12 @@
             </a>
         </div>
     </header>
-<body>
-    <h1>Formulario de Solicitud de Cita - La Patita Feliz</h1>
-
-    <form action="#" method="post" autocomplete="on">
-
+    <main>
+         <h1 class="tituloPrincipal">Formulario de Solicitud de Cita - La Patita Feliz</h1>
+        <form action="#" method="post" autocomplete="on">
         <!-- Datos del dueño -->
         <fieldset>
             <legend>Datos del dueño</legend>
-            <br><br>
-
             <label for="nombre-dueno">Nombre completo del dueño:</label>
             <input
                 type="text"
@@ -51,8 +47,6 @@
                 maxlength="60"
                 required
             >
-            <br><br>
-
             <label for="telefono">Número de teléfono:</label>
             <input
                 type="tel"
@@ -63,9 +57,7 @@
                 maxlength="10"
                 required
             >
-            <br><br>
-
-            <label for="correo">Correo electrónico:</label>
+           <label for="correo">Correo electrónico:</label>
             <input
                 type="email"
                 id="correo"
@@ -74,13 +66,9 @@
                 required
             >
         </fieldset>
-
-        <br>
-
         <!-- Datos de la mascota -->
         <fieldset>
             <legend>Datos de la mascota</legend>
-
             <label for="nombre-mascota">Nombre de la mascota:</label>
             <input
                 type="text"
@@ -90,19 +78,13 @@
                 maxlength="40"
                 required
             >
-            <br><br>
-
-            <span>Tipo de mascota:</span><br>
+             <span>Tipo de mascota:</span>
             <input type="radio" id="perro" name="tipo_mascota" value="Perro" required>
-            <label for="perro">Perro</label><br>
-
+            <label for="perro">Perro</label>
             <input type="radio" id="gato" name="tipo_mascota" value="Gato">
-            <label for="gato">Gato</label><br>
-
+            <label for="gato">Gato</label>
             <input type="radio" id="otro" name="tipo_mascota" value="Otro">
             <label for="otro">Otro</label>
-            <br><br>
-
             <label for="tamano">Tamaño de la mascota:</label>
             <select id="tamano" name="tamano" required>
                 <option value="">Selecciona una opción</option>
@@ -111,13 +93,9 @@
                 <option value="grande">Grande</option>
             </select>
         </fieldset>
-
-        <br>
-
         <!-- Servicios -->
         <fieldset>
             <legend>Servicio solicitado</legend>
-
             <label for="servicio">Servicio principal:</label>
             <select id="servicio" name="servicio" required>
                 <option value="">Selecciona el servicio</option>
@@ -126,41 +104,26 @@
                 <option value="spa">Spa relajante</option>
                 <option value="completo">Paquete completo</option>
             </select>
-            <br><br>
-
-            <span>Servicios adicionales:</span><br>
-
+            <span>Servicios adicionales:</span>
             <input type="checkbox" id="unas" name="servicio_unas" value="Corte de uñas">
-            <label for="unas">Corte de uñas</label><br>
-
+            <label for="unas">Corte de uñas</label>
             <input type="checkbox" id="oidos" name="servicio_oidos" value="Limpieza de oídos">
             <label for="oidos">Limpieza de oídos</label><br>
-
             <input type="checkbox" id="dientes" name="servicio_dientes" value="Limpieza dental">
             <label for="dientes">Limpieza dental</label>
         </fieldset>
-
-        <br>
-
         <!-- Fecha y hora -->
         <fieldset>
             <legend>Programación de la cita</legend>
-
             <label for="fecha">Fecha de la cita:</label>
             <input type="date" id="fecha" name="fecha" required>
-            <br><br>
-
             <label for="hora">Hora preferida:</label>
             <input type="time" id="hora" name="hora" required>
         </fieldset>
-
-        <br>
-
         <!-- Observaciones -->
         <fieldset>
             <legend>Observaciones</legend>
-
-            <label for="comentarios">Comentarios adicionales:</label><br>
+            <label for="comentarios">Comentarios adicionales:</label>
             <textarea
                 id="comentarios"
                 name="comentarios"
@@ -169,19 +132,15 @@
                 placeholder="Indica alergias, comportamiento especial, etc."
             ></textarea>
         </fieldset>
-
-        <br>
-
         <!-- Botones -->
         <input type="submit" value="Enviar solicitud">
         <input type="reset" value="Limpiar formulario">
     </form>
+    </main>
     <!-- FOOTER -->
-    <footer>
+   <footer>   
         <div class="info">
-            <p>
-                <strong>Contacto:</strong> Cr. 42B Sur #03 - La Paz Envigado | Tel: +57 300 6380368
-            </p>
+            <p>Cr. 42B Sur #03 - La Paz Envigado | Tel: +57 300 6380368</p>
             <div class="redes">
                 <a href="https://www.facebook.com/share/1BkZMYShQG/?mibextid=wwXIfr"><img src="../images/facebook.png" alt="Facebook"></a>
                 <a href="https://www.instagram.com/lapaticafeliz?igsh=cXV4aG5tNjFleXdi"><img src="../images/instagam.png" alt="Instagram"></a>

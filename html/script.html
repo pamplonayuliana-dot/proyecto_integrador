@@ -32,9 +32,10 @@
             </a>
         </div>
     </header>
+    <main>
    <!-- Modelo Entidad-Relación -->
     <hr>
-    <h1 class="TituloModelo">Reglas del Negocio</h1>
+    <h2 class="TituloModelo">Reglas del Negocio</h2>
     <section class="reglas-container">
             <ol class="reglas-lista">
             <!-- 1. Clientes y mascotas -->
@@ -50,7 +51,6 @@
                     <li>Nombre, Especie, Raza, Edad y Peso son atributos necesarios para evaluar qué servicios puede recibir la mascota.</li>
                 </ul>
             </li>
-
             <!-- 2. Empleados y atención de citas -->
             <li>
                 <h3>Empleados y atención de citas</h3>
@@ -63,7 +63,6 @@
                     <li>Una misma mascota puede tener múltiples citas en fechas y horas diferentes.</li>
                 </ul>
             </li>
-
             <!-- 3. Citas y servicios (Detalle de la cita) -->
             <li>
                 <h3>Citas y servicios (Detalle de la cita)</h3>
@@ -81,7 +80,6 @@
                     <li>Comentarios de comportamiento, instrucciones del cliente, advertencias, etc., se registran en Citas.Observaciones.</li>
                 </ul>
             </li>
-
             <!-- 4. Catálogo de servicios -->
             <li>
                 <h3>Catálogo de servicios</h3>
@@ -94,7 +92,6 @@
                     <li>DetalleCita.ServicioID debe corresponder a un Servicios.ServicioID válido.</li>
                 </ul>
             </li>
-
             <!-- 5. Productos -->
             <li>
                 <h3>Productos</h3>
@@ -109,12 +106,11 @@
     </section>
 <hr>
 <!-- Script Base De Datos -->
-            <h3 class="TituloModelo mb-4">Diagrama Modelo Entidad Relación(SQL)</h3>
-<pre class="bg-dark-code p-4 border rounded shadow-sm">  
-    <img class="modeloER" src="../images/Modelo_Entidad_Relacion.png" alt="script">   
+<h3 class="TituloModelo mb-4">Diagrama Modelo Entidad Relación(SQL)</h3>
+<img class="modeloER" src="../images/Modelo_Entidad_Relacion.png" alt="script">   
 <hr>   
 <h3 class="TituloModelo mb-4">Script de la Base De Datos (SQL)</h3>        
-    <code> 
+ <pre class="bg-dark-code p-4 border rounded shadow-sm"><code> 
         CREATE DATABASE MascotasSpa;
         USE MascotasSpa;
 
@@ -292,14 +288,13 @@
         SELECT Categoria, COUNT(*) AS TotalProductos
         FROM Productos
         GROUP BY Categoria;
-    </code>        
-    </pre>
-       <!-- FOOTER -->
-    <footer>
+    </code>
+ </pre> 
+    </main> 
+   <!-- FOOTER -->
+    <footer>   
         <div class="info">
-            <p>
-                <strong>Contacto:</strong> Cr. 42B Sur #03 - La Paz Envigado | Tel: +57 300 6380368
-            </p>
+            <p>Cr. 42B Sur #03 - La Paz Envigado | Tel: +57 300 6380368</p>
             <div class="redes">
                 <a href="https://www.facebook.com/share/1BkZMYShQG/?mibextid=wwXIfr"><img src="../images/facebook.png" alt="Facebook"></a>
                 <a href="https://www.instagram.com/lapaticafeliz?igsh=cXV4aG5tNjFleXdi"><img src="../images/instagam.png" alt="Instagram"></a>
